@@ -4,6 +4,10 @@
 
 //最新制作了web版编译器的使用教程视频，还有更多视频内容正在上传请关注我们的西瓜视频 https://www.ixigua.com/i6713192503262052871/
 
+//程序和资料链接： https://github.com/shihaipeng03/Sunflower
+//https://create.arduino.cc/editor/wjd76/e225717a-ae15-4282-98bd-f9cf09400bee/preview
+
+
 
 #include <Servo.h> 
 
