@@ -14,8 +14,8 @@
 #define SERVOPINH  5 //水平舵机
 #define SERVOPINV  6 //垂直舵机
 
-#define dtime   20  //延时参数，数值越小相应速度越快，反之相应慢   单位毫秒 一般取值（10~100） 
-#define tol   20     //照度的相应范围，越小越敏感，反之迟缓  （取值10~100 根据环境光强度不同敏感度也不同，室内光源变化幅度大，阳光下变化小）
+#define dtime   50  //延时参数，数值越小相应速度越快，反之相应慢   单位毫秒 一般取值（10~100） 
+#define tol   50     //照度的相应范围，越小越敏感，反之迟缓  （取值10~100 根据环境光强度不同敏感度也不同，室内光源变化幅度大，阳光下变化小）
 /*以上2参数太小，会对光线的细微变化极其敏感，进而产生抖动，
   为消除抖动，可以使用滤波处理，或者调节参数，减慢反应时间或敏感度来应对。 */
 
@@ -31,8 +31,8 @@ int servohLimitLow = 5;     //左右角度
 Servo vertical;     // 垂直舵机
 int servov = 90;     // 默认角度
 
-int servovLimitHigh = 180;  //
-int servovLimitLow = 70;    //最大仰角 不易过大，传感器可能顶住机架
+int servovLimitHigh = 100;  //
+int servovLimitLow = 0;    //最大仰角 不易过大，传感器可能顶住机架
 
 
 //
@@ -49,7 +49,24 @@ void setup()
   vertical.attach(SERVOPINV);
   horizontal.write(servoh);
   vertical.write(servov);
-  delay(1000);
+  delay(100);
+
+  //测试运行情况
+  //测试垂直轴的运行情况，注意检测一下是否有卡住（或者导线缠绕）的情况。
+  for(int i=servovLimitLow;i<servovLimitHigh;i++)
+  {  vertical.write(i);
+     delay(40);
+  }
+  vertical.write((servovLimitLow + servovLimitHigh)/2);
+  delay(100);
+  //测试水平
+  for(int i=0;i<180;i++)
+   {  horizontal.write(i);
+     delay(40);
+   }
+   horizontal.write((servohLimitHigh + servohLimitLow)/2);
+   //如果测试没有问题，可以去掉此处的代码。 
+
 }
 
 void loop() 
@@ -68,7 +85,15 @@ void loop()
   
   int dvert = avt - avd; // 
   int dhoriz = avl - avr;//再计算上排下排的读数平均值
-  
+
+  Serial.print(lt);
+  Serial.print(",");
+  Serial.print(rt);
+  Serial.print(",");
+  Serial.print(ld);
+  Serial.print(",");
+  Serial.print(rd);
+  Serial.println(" ");    
   
   Serial.print(avt);
   Serial.print(",");
