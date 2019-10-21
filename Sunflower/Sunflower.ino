@@ -31,7 +31,7 @@ int servohLimitLow = 5;     //左右角度
 Servo vertical;     // 垂直舵机
 int servov = 90;     // 默认角度
 
-int servovLimitHigh = 100;  //
+int servovLimitHigh = 110;  //
 int servovLimitLow = 0;    //最大仰角 不易过大，传感器可能顶住机架
 
 
@@ -84,7 +84,7 @@ void loop()
   int avr = (rt + rd) / 2; //将邻近的读数平均
   
   int dvert = avt - avd; // 
-  int dhoriz = avl - avr;//再计算上排下排的读数平均值
+  int dhoriz = avl - avr;//再计算上下行和左右排平均值的平均值
 
   Serial.print(lt);
   Serial.print(",");
@@ -93,7 +93,7 @@ void loop()
   Serial.print(ld);
   Serial.print(",");
   Serial.print(rd);
-  Serial.println(" ");    
+  Serial.print ("      |    ");    
   
   Serial.print(avt);
   Serial.print(",");
@@ -127,7 +127,7 @@ void loop()
     servov = servovLimitLow;
   }
   }
-  vertical.write(servov); //舵机旋转角度和光线相反的话 用(180- servov)或 (servov) 调换方向即可
+  vertical.write(180 - servov); //舵机旋转角度和光线相反的话 用(180- servov)或 (servov) 调换方向即可
   }
 
   //检查差异是否在公差范围内，否则改变水平角度  
