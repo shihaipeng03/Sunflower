@@ -1,6 +1,7 @@
 //淘宝『有名称的店铺』https://somebodys.taobao.com/
 //更新日期 2019/06/04
 
+//视频教程：https://www.ixigua.com/i6765878731480236547/
 
 //最新制作了web版编译器的使用教程视频，还有更多视频内容正在上传请关注我们的西瓜视频 https://www.ixigua.com/i6713192503262052871/
 
@@ -31,8 +32,8 @@ int servohLimitLow = 5;     //左右角度
 Servo vertical;     // 垂直舵机
 int servov = 90;     // 默认角度
 
-int servovLimitHigh = 110;  //
-int servovLimitLow = 0;    //最大仰角 不易过大，传感器可能顶住机架
+int servovLimitHigh = 180;  //
+int servovLimitLow = 90;    //最大仰角 不易过大，传感器可能顶住机架
 
 
 //
@@ -53,14 +54,14 @@ void setup()
 
   //测试运行情况
   //测试垂直轴的运行情况，注意检测一下是否有卡住（或者导线缠绕）的情况。
-  for(int i=servovLimitLow;i<servovLimitHigh;i++)
+  for(int i=servovLimitLow;i<servovLimitHigh;i+=10)
   {  vertical.write(i);
      delay(40);
   }
   vertical.write((servovLimitLow + servovLimitHigh)/2);
   delay(100);
   //测试水平
-  for(int i=0;i<180;i++)
+  for(int i=0;i<180;i+=10)
    {  horizontal.write(i);
      delay(40);
    }
@@ -127,7 +128,7 @@ void loop()
     servov = servovLimitLow;
   }
   }
-  vertical.write(180 - servov); //舵机旋转角度和光线相反的话 用(180- servov)或 (servov) 调换方向即可
+  vertical.write(servov); //舵机旋转角度和光线相反的话 用(180- servov)或 (servov) 调换方向即可
   }
 
   //检查差异是否在公差范围内，否则改变水平角度  
@@ -153,7 +154,7 @@ void loop()
   {
     // nothing
   }
-  horizontal.write(180 - servoh); //舵机旋转角度和光线相反的话 用(180- servoh) 或 (servoh) 调换方向即可
+  horizontal.write(servoh); //舵机旋转角度和光线相反的话 用(180- servoh) 或 (servoh) 调换方向即可
   }
    delay(dtime);
 
