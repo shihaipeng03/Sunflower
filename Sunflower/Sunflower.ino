@@ -54,16 +54,16 @@ void setup()
 
   //测试运行情况
   //测试垂直轴的运行情况，注意检测一下是否有卡住（或者导线缠绕）的情况。
-  for(int i=servovLimitLow;i<servovLimitHigh;i+=10)
+  for(int i=servovLimitLow;i<servovLimitHigh;i+=2)
   {  vertical.write(i);
-     delay(40);
+     delay(30);
   }
   vertical.write((servovLimitLow + servovLimitHigh)/2);
   delay(100);
   //测试水平
-  for(int i=0;i<180;i+=10)
+  for(int i=0;i<180;i+=2)
    {  horizontal.write(i);
-     delay(40);
+     delay(30);
    }
    horizontal.write((servohLimitHigh + servohLimitLow)/2);
    //如果测试没有问题，可以去掉此处的代码。 
