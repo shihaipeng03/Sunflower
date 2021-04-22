@@ -8,6 +8,10 @@
 //程序和资料链接： https://github.com/shihaipeng03/Sunflower
 //https://create.arduino.cc/editor/wjd76/e225717a-ae15-4282-98bd-f9cf09400bee/preview
 
+//部分系统有不不能正常安装驱动的情况，可以手工安装驱动（CH340 CH341都可以适用）。
+//WIN驱动下载链接： https://sparks.gogo.co.nz/assets/_site_/downloads/CH34x_Install_Windows_v3_4.zip  
+//其他系统请到  https://sparks.gogo.co.nz/ch340.html  （CH34X驱动大全或自行搜索） 
+//注意，x64的win7系统或者是ghost的系统可能会无法安装驱动。
 
 
 #include <Servo.h> 
@@ -45,7 +49,7 @@ const int ldrrd = A3; //右下
 
 void setup()
 {
-  Serial.begin(9600);
+  Serial.begin(115200);
   horizontal.attach(SERVOPINH); 
   vertical.attach(SERVOPINV);
   horizontal.write(servoh);
