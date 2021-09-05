@@ -42,10 +42,10 @@ int servovLimitLow = 90;    //最大仰角 不易过大，传感器可能顶住�
 
 //
 // 4个传感器的接线口   
-const int ldrlt = A0; //左上  //2022新版 A3
-const int ldrrt = A1; //右上  //2022新版 A2
-const int ldrld = A2; //左下  //2022新版 A0
-const int ldrrd = A3; //右下  //2022新版 A1
+const int ldrlt = A3; //左上  //老版 A0
+const int ldrrt = A2; //右上  //老版 A1
+const int ldrld = A0; //左下  //老版 A2
+const int ldrrd = A1; //右下  //老版 A3
 
 
 void setup()
