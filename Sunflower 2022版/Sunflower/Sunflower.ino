@@ -16,8 +16,8 @@
 
 #include <Servo.h> 
 
-#define SERVOPINH  5 //水平舵机
-#define SERVOPINV  6 //垂直舵机
+#define SERVOPINH  2 //水平舵机
+#define SERVOPINV  3 //垂直舵机
 
 #define dtime   50  //延时参数，数值越小相应速度越快，反之相应慢   单位毫秒 一般取值（10~100） 
 #define tol   50     //照度的相应范围，越小越敏感，反之迟缓  （取值10~100 根据环境光强度不同敏感度也不同，室内光源变化幅度大，阳光下变化小）
@@ -41,11 +41,11 @@ int servovLimitLow = 90;    //最大仰角 不易过大，传感器可能顶住�
 
 
 //
-// 4个传感器的接线口   
-const int ldrlt = A3; //左上  //老版 A0
-const int ldrrt = A2; //右上  //老版 A1
-const int ldrld = A0; //左下  //老版 A2
-const int ldrrd = A1; //右下  //老版 A3
+// 4个传感器的接线口
+#define ldrlt  A2
+#define ldrrt  A3
+#define ldrld  A1
+#define ldrrd  A0
 
 
 void setup()
@@ -120,7 +120,7 @@ void loop()
   if (avt > avd)
   {
     servov = ++servov;
-     if (servov > servovLimitHigh) 
+     if (servov > servovLimitHigh)
      { 
       servov = servovLimitHigh;
      }
@@ -137,7 +137,7 @@ void loop()
   }
 
   //检查差异是否在公差范围内，否则改变水平角度  
-  if (-1*tol > dhoriz || dhoriz > tol) 
+  if (-1*tol > dhoriz || dhoriz > tol)
   {
   if (avl > avr)
   {
