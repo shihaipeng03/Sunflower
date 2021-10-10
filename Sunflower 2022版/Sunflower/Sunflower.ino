@@ -16,8 +16,8 @@
 
 #include <Servo.h> 
 
-#define SERVOPINH  2 //水平舵机
-#define SERVOPINV  3 //垂直舵机
+#define SERVOPINH  5 //水平舵机
+#define SERVOPINV  6 //垂直舵机
 
 #define dtime   50  //延时参数，数值越小相应速度越快，反之相应慢   单位毫秒 一般取值（10~100） 
 #define tol   50     //照度的相应范围，越小越敏感，反之迟缓  （取值10~100 根据环境光强度不同敏感度也不同，室内光源变化幅度大，阳光下变化小）
